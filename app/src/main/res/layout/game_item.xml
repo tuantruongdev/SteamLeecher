@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/game_item_height"
+        android:layout_marginBottom="@dimen/margin_med"
+        android:background="@color/black_transparent">
+
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="2"
+            android:src="@drawable/capsule_231x87" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:layout_weight="2">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_tiny"
+                        android:autoSizeMaxTextSize="@dimen/max_text_size"
+                        android:autoSizeMinTextSize="@dimen/min_text_size"
+
+                        android:autoSizeStepGranularity="@dimen/text_increase_step"
+                        android:autoSizeTextType="uniform"
+                        android:maxLines="1"
+                        android:text="Ark : Survival Evolved"
+                        android:textColor="@color/white" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/macos"
+                            android:layout_width="@dimen/icon_size"
+                            android:layout_height="@dimen/icon_size"
+                            android:layout_marginRight="@dimen/margin_small"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/ic_apple_svgrepo_com"
+                            android:visibility="gone" />
+
+                        <ImageView
+                            android:id="@+id/windows"
+                            android:layout_width="@dimen/icon_size"
+                            android:layout_height="@dimen/icon_size"
+                            android:layout_marginRight="@dimen/margin_small"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/ic_windows_svgrepo_com"
+                            android:visibility="gone" />
+
+                        <ImageView
+                            android:id="@+id/linux"
+                            android:layout_width="@dimen/icon_size"
+                            android:layout_height="@dimen/icon_size"
+                            android:layout_marginRight="@dimen/margin_small"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/ic_linux_svgrepo_com"
+                            android:visibility="gone" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Honor, FPS, Creative"
+                        android:textColor="@color/gray"
+                        android:textSize="@dimen/tag_text_size" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginRight="@dimen/margin_med"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+               >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/original_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="990.000d"
+                        android:textColor="@color/blue_price"
+                        android:textSize="@dimen/original_price_size"
+                        android:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/discountPercentage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@color/green_up"
+                        android:padding="@dimen/margin_tiny"
+                        android:text="-20%"
+                        android:textColor="@color/green_up_lighter"
+                        android:textSize="@dimen/original_price_size"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="690.000d"
+                        android:textColor="@color/blue_price" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+
+</layout>
