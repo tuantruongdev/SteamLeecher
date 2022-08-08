@@ -48,7 +48,6 @@
                     android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Counter Strike : Global Offensive"
                     android:textColor="@color/darker_gray"
                     android:textSize="@dimen/game_name_size"
                     android:textStyle="bold" />
@@ -67,7 +66,6 @@
                     android:id="@+id/finalPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="19.000₫"
                     android:textColor="@color/darker_gray"
                     android:textSize="@dimen/game_price_size"
                     android:textStyle="bold" />
@@ -88,7 +86,6 @@
                         android:id="@+id/developer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Vavle Software"
                         android:textColor="@color/blue"
                         android:textSize="@dimen/game_info_size" />
                 </LinearLayout>
@@ -109,7 +106,6 @@
                         android:id="@+id/publisher"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Riot Games"
                         android:textColor="@color/blue"
                         android:textSize="@dimen/game_info_size" />
                 </LinearLayout>
@@ -130,8 +126,7 @@
                         android:id="@+id/releaseDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="20 jul, 2022"
-                        android:textColor="@color/darker_gray"
+                         android:textColor="@color/darker_gray"
                         android:textSize="@dimen/game_info_size" />
                 </LinearLayout>
 
@@ -155,7 +150,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:lineSpacingExtra="@dimen/margin_tiny"
-                    android:text="@string/dummy_place_holder"
+
                     android:textColor="@color/super_darker_gray"
                     android:textSize="@dimen/game_info_size" />
             </LinearLayout>
