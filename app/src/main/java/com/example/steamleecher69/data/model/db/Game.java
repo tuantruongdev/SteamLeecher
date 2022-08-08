@@ -47,7 +47,10 @@ public class Game {
     }
 
     public String getFinalPriceString() {
-        return finalPriceString;
+        if (finalPriceString.length()<30){
+            return finalPriceString;
+        }
+        else return "";
     }
 
     public void setFinalPriceString(String finalPriceString) {
