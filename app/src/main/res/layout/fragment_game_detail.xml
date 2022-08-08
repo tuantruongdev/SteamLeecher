@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.detail.view.GameDetail">
+    tools:context=".ui.saved.view.GameDetail">
 
 <LinearLayout
     android:layout_width="match_parent"
@@ -32,7 +32,7 @@
         android:layout_height="match_parent">
 
         <ScrollView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="@dimen/buy_btn_height">
 

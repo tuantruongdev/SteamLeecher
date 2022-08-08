@@ -7,7 +7,7 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.steamleecher69.data.model.GameOverView;
+import com.example.steamleecher69.data.model.api.GameOverView;
 import com.example.steamleecher69.data.repository.GameDataRepository;
 import com.example.steamleecher69.ui.main.callback.IViewModelCallBack;
 import com.example.steamleecher69.utils.Const;
@@ -18,11 +18,11 @@ import java.util.ArrayList;
  * Created by macos on 27,July,2022
  */
 public class MainActivityViewModel extends ViewModel implements IViewModelCallBack {
-    GameDataRepository gameDataRepository;
-    MutableLiveData<ArrayList<GameOverView>> listGameOverViewLiveData;
-    ArrayList<GameOverView> listGameOverView;
-    int queryCount = 0;
-    boolean isLoading = false;
+    private GameDataRepository gameDataRepository;
+    private MutableLiveData<ArrayList<GameOverView>> listGameOverViewLiveData;
+    private ArrayList<GameOverView> listGameOverView;
+    private int queryCount = 0;
+    private boolean isLoading = false;
 
     public MainActivityViewModel() {
         gameDataRepository = GameDataRepository.getInstance();
@@ -53,13 +53,13 @@ public class MainActivityViewModel extends ViewModel implements IViewModelCallBa
     }
 
     public void getListGame() {
-        Log.d(TAG, "getListGame: is loading"+ isLoading);
+        Log.d(TAG, "getListGame: is loading" + isLoading);
         initSearch();
         gameDataRepository.getGames(this, Const.Url.SEARCH_GAMES_ENDPOINT, "", 0, Const.Query.BASE_QUERY_COUNT);
     }
 
     public void searchListGame(String query) {
-        if (isLoading==true) return;
+        if (isLoading == true) return;
         initSearch();
         gameDataRepository.getGames(this, Const.Url.SEARCH_GAMES_ENDPOINT, query, 0, Const.Query.BASE_QUERY_COUNT);
     }
@@ -73,7 +73,7 @@ public class MainActivityViewModel extends ViewModel implements IViewModelCallBa
         }
     }
 
-    private boolean initSearch(){
+    private boolean initSearch() {
         isLoading = true;
         queryCount = 0;
         listGameOverView.clear();

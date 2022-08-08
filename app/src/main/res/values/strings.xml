@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">Gaben\'s Store</string>
     <string name="app_title">Gaben\'s Store</string>
+    <string name="store">Store</string>
+    <string name="favorite">Favorite</string>
     <string name="dummy_place_holder">FORWARD: Escape the Fold was created to be the perfect bitesized roguelike dungeon crawler. Choose your champion and face a relentless crawl through the card-based dungeons, collect items to power your abilities and defeat the gruesome monsters facing you. But keep going FORWARD!</string>
     <string name="buy_now">BUY THIS GAME</string>
+    <string name="wishlist">Your Wishlist</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

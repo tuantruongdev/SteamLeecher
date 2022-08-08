@@ -4,6 +4,10 @@ package com.example.steamleecher69.utils;
  * Created by macos on 26,July,2022
  */
 public interface Const {
+    interface Database {
+        String DB_NAME = "saved_game";
+    }
+
     interface Url {
         String STEAM_STORE_URL = "https://store.steampowered.com/";
         String TOP_SELLER_ENDPOINT = "search/?filter=topsellers";
@@ -12,7 +16,7 @@ public interface Const {
         String GAME_INFO_ENDPOINT = "app/{APPID}";
     }
 
-    interface Cookie{
+    interface Cookie {
         String BIRTH_TIME = "birthtime";
         String WMC = "wants_mature_content";
         String BIRTH_TIME_VALUE = "943981201";
@@ -56,7 +60,7 @@ public interface Const {
             String FINAL_PRICE_STRING_NO_DISCOUNT = "\">(.*?)</div>";// match 2
 
             String DESCRIPTION = "<div class=\"game_description_snippet\">(.*?)</div>";
-            String VIDEO_480P ="data-mp4-source=\"(.*?)\"";
+            String VIDEO_480P = "data-mp4-source=\"(.*?)\"";
         }
     }
 

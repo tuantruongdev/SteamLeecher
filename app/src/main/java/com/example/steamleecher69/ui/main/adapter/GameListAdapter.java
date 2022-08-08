@@ -2,7 +2,6 @@ package com.example.steamleecher69.ui.main.adapter;
 
 import android.graphics.Paint;
 import android.os.Build;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.steamleecher69.R;
-import com.example.steamleecher69.data.model.GameOverView;
+import com.example.steamleecher69.data.model.api.GameOverView;
 import com.example.steamleecher69.databinding.GameItemBinding;
 import com.example.steamleecher69.ui.main.callback.IMainActivityViewCallBack;
 import com.example.steamleecher69.utils.Const;
@@ -41,12 +40,10 @@ public class GameListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if (layoutInflater == null) {
             layoutInflater = LayoutInflater.from(parent.getContext());
         }
-
         if (viewType == Const.View.VIEW_TYPE_LOADING) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.game_item_loading, parent, false);
             return new loadingViewHolder(view);
         }
-
         GameItemBinding binding = DataBindingUtil.inflate(layoutInflater, R.layout.game_item, parent, false);
         return new GameViewHolder(binding);
     }
@@ -63,12 +60,7 @@ public class GameListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         GameViewHolder gameViewHolder = (GameViewHolder) holder;
 
         GameItemBinding binding = gameViewHolder.gameItemBinding;
-//        if (TextUtils.isEmpty(game.getFinalPriceString())) {
-//            binding.container.setVisibility(View.GONE);
-//        }
-        // holder.gameItemBinding.se(game);
         binding.name.setText(game.getName());
-        //holder.gameItemBinding.image
         binding.price.setText(game.getFinalPriceString());
 
         if (game.getDiscount() > 0) {
@@ -118,6 +110,8 @@ public class GameListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return gameList.size();
     }
 
+
+
     @Override
     public int getItemViewType(int position) {
         if (gameList.get(position) == null) {
@@ -128,11 +122,6 @@ public class GameListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public void setGameList(ArrayList<GameOverView> gameList) {
         this.gameList = gameList;
-        notifyDataSetChanged();
-    }
-
-    public void addGameList(ArrayList<GameOverView> gameList) {
-        this.gameList.addAll(gameList);
         notifyDataSetChanged();
     }
 

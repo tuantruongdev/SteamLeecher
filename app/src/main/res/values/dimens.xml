@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="app_title_size">30sp</dimen>
-
+    <dimen name="tiny_gap">1dp</dimen>
     <dimen name="margin_extra_large">25dp</dimen>
     <dimen name="margin_large">15dp</dimen>
     <dimen name="margin_med">10dp</dimen>

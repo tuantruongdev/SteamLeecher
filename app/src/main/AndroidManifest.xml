@@ -20,7 +20,7 @@
             android:name=".ui.detail.view.GameDetail"
             android:exported="false" />
         <activity
-            android:name=".ui.main.view.MainActivity"
+            android:name=".ui.bottomnav.view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

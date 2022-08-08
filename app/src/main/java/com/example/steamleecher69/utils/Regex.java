@@ -4,7 +4,7 @@ import static android.content.ContentValues.TAG;
 
 import android.util.Log;
 
-import com.example.steamleecher69.data.model.GameOverView;
+import com.example.steamleecher69.data.model.api.GameOverView;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -20,17 +20,12 @@ public class Regex {
             Log.e(TAG, "onResponse: nothing response");
             return null;
         }
-        Log.d(TAG, "toRawList: asss");
-
         raw = replaceUnnecessaryChar(raw);
-
         Pattern pattern = Pattern.compile("<!-- List Items -->(.*?)<!-- End List Items -->");
         Matcher matcher = pattern.matcher(raw);
 
         if (matcher.find()) {
-            // Log.d(TAG, "onResponse: " + matcher.group(1));
             return matcher.group(1);
-            // Log.d(TAG, "onResponse: " + matcher.group(1));
         }
         Log.d(TAG, "toRawList: not found");
         return null;
@@ -56,7 +51,6 @@ public class Regex {
         String releaseDate;
         long finalPrice;
         ArrayList<String> platforms = new ArrayList<>();
-
         boolean isDiscounted = isDiscounted(raw);
 
         try {
@@ -95,7 +89,6 @@ public class Regex {
         if (raw.contains(Const.Platforms.LINUX_PLATFORM)) {
             platforms.add(Const.Platforms.LINUX_PLATFORM);
         }
-
         return new GameOverView(href, appid, "", search_page, image2x, name, releaseDate, finalPriceString, finalPrice, discountPercentage, platforms, originalPriceString);
     }
 
@@ -105,7 +98,6 @@ public class Regex {
         int discount = 0;
 
         href = String.format("%s%s", Const.Url.STEAM_STORE_URL, Const.Url.GAME_INFO_ENDPOINT).replace("{APPID}", appid);
-        //Log.d(TAG, "toGameOverView: "+href);
         name = getFirstMatcher(Pattern.compile(Const.Regex.Detail.NAME), raw);
         releaseDate = getFirstMatcher(Pattern.compile(Const.Regex.Detail.RELEASE_DATE), raw);
         description = getFirstMatcher(Pattern.compile(Const.Regex.Detail.DESCRIPTION), raw);
@@ -118,8 +110,6 @@ public class Regex {
 
         try {
             String buyGameItem = getFirstMatcher(Pattern.compile(Const.Regex.Detail.BUY_GAME_ITEM), raw);
-            //   if (buyGameItem == null)
-
             if (buyGameItem.contains(Const.Regex.Detail.IS_DISCOUNT)) {
                 discount = Integer.parseInt(getFirstMatcher(Pattern.compile(Const.Regex.Detail.DISCOUNT_PERCENTAGE), buyGameItem).replace("-", "").replace("%", ""));
                 originalPriceString = getFirstMatcher(Pattern.compile(Const.Regex.Detail.ORIGINAL_PRICE_STRING), buyGameItem);
@@ -137,7 +127,6 @@ public class Regex {
         }
 
         videoList = getVideo480(raw);
-//    public GameOverView(String href, String image2x, String name, String releaseDate, String finalPriceString, int discount, String originalPriceString, String developer, String publisher, String description, ArrayList<String> videoList) {
         return new GameOverView(href, "", name, releaseDate, finalPriceString, discount, originalPriceString, developer, publisher, description, videoList);
     }
 

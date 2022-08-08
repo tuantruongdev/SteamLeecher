@@ -6,8 +6,10 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.example.steamleecher69.data.api.ApiFetch;
-import com.example.steamleecher69.data.model.GameOverView;
+import com.example.steamleecher69.data.local.db.Database;
+import com.example.steamleecher69.data.model.api.GameOverView;
+import com.example.steamleecher69.data.model.db.Game;
+import com.example.steamleecher69.data.remote.api.ApiFetch;
 import com.example.steamleecher69.ui.detail.callback.IDetailVIewModelCallBack;
 import com.example.steamleecher69.ui.main.callback.IViewModelCallBack;
 import com.example.steamleecher69.utils.Const;
@@ -15,6 +17,7 @@ import com.example.steamleecher69.utils.Regex;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -25,9 +28,11 @@ import okhttp3.Response;
  */
 public class GameDataRepository {
     private static GameDataRepository instance;
-    ApiFetch apiFetch = new ApiFetch();
+    private Database db;
+    private ApiFetch apiFetch = new ApiFetch();
 
     private GameDataRepository() {
+
     }
 
     public static GameDataRepository getInstance() {
@@ -35,6 +40,10 @@ public class GameDataRepository {
             instance = new GameDataRepository();
         }
         return instance;
+    }
+
+    public void setDb(Database db) {
+        this.db = db;
     }
 
     public void getGames(IViewModelCallBack viewModelCallBack, String endpoint, String query, int start, int count) {
@@ -77,14 +86,13 @@ public class GameDataRepository {
                     gamesOverView.add(Regex.toOverViewGameArrayList(game));
                 }
                 viewModelCallBack.onResponseData(gamesOverView);
-                //Log.d(TAG, "onResponse: "+ r.replace("\n", "").replace("\r",""));
             }
         });
     }
 
     public void getGameInfo(IDetailVIewModelCallBack detailVIewModelCallBack, String appid) {
         String endpoint = Const.Url.GAME_INFO_ENDPOINT.replace("{APPID}", appid);
-        Log.d(TAG, "getGameInfo: "+ endpoint);
+        Log.d(TAG, "getGameInfo: " + endpoint);
         Call call = apiFetch.sendRequest(endpoint);
         call.enqueue(new Callback() {
             @Override
@@ -96,11 +104,31 @@ public class GameDataRepository {
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 String r = response.body().string();
                 r = Regex.replaceUnnecessaryChar(r);
-                Log.d(TAG, "onResponse: "+ r);
-                GameOverView go = Regex.toGameOverView(r,appid);
+                Log.d(TAG, "onResponse: " + r);
+                GameOverView go = Regex.toGameOverView(r, appid);
                 detailVIewModelCallBack.onResponseData(go);
             }
         });
     }
 
+    public void saveGame(Game game) {
+        if (db.gameDAO().countByAppId(game.getAppid()) > 0) {
+            db.gameDAO().updateGame(game.getAppid());
+            Log.d(TAG, "saveGame: delete");
+        } else {
+            //game not saved yet
+            db.gameDAO().insertGame(game);
+        }
+    }
+
+    public int isFavorite(String appId) {
+        return db.gameDAO().countByAppId(appId);
+    }
+
+    public ArrayList<Game> getSavedGame(){
+        List<Game> game= db.gameDAO().getListGame();
+        ArrayList<Game> arrayListGame = new ArrayList<>();
+        arrayListGame.addAll(game);
+        return arrayListGame;
+    }
 }

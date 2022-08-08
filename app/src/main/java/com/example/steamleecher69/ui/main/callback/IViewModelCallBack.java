@@ -1,6 +1,6 @@
 package com.example.steamleecher69.ui.main.callback;
 
-import com.example.steamleecher69.data.model.GameOverView;
+import com.example.steamleecher69.data.model.api.GameOverView;
 
 import java.util.ArrayList;
 

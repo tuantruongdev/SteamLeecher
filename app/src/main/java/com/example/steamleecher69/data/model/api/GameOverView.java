@@ -1,21 +1,17 @@
-package com.example.steamleecher69.data.model;
+package com.example.steamleecher69.data.model.api;
+
+import com.example.steamleecher69.data.model.db.Game;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by macos on 27,July,2022
  */
-public class GameOverView
-{
+public class GameOverView extends Game {
     private String href;
-    private String appid;
     private String tagids;
     private int search_page ;
-    private String image2x;
-    private String name;
     private String releaseDate;
-    private String finalPriceString;
     private long finalPrice;
     private int discount;
     private ArrayList<String> platforms;
@@ -25,13 +21,19 @@ public class GameOverView
     private String description;
     private ArrayList<String> videoList;
 
-    public GameOverView(String href, String image2x, String name, String releaseDate, String finalPriceString, int discount, String originalPriceString, String developer, String publisher, String description, ArrayList<String> videoList) {
+    public GameOverView(String appid, String name, String finalPriceString, String image2x) {
+        super(appid, name, finalPriceString, image2x);
+    }
+
+    public GameOverView(String appid, String name, String finalPriceString, String image2x, String href, String tagids, int search_page, String releaseDate, long finalPrice, int discount, ArrayList<String> platforms, String originalPriceString, String developer, String publisher, String description, ArrayList<String> videoList) {
+        super(appid, name, finalPriceString, image2x);
         this.href = href;
-        this.image2x = image2x;
-        this.name = name;
+        this.tagids = tagids;
+        this.search_page = search_page;
         this.releaseDate = releaseDate;
-        this.finalPriceString = finalPriceString;
+        this.finalPrice = finalPrice;
         this.discount = discount;
+        this.platforms = platforms;
         this.originalPriceString = originalPriceString;
         this.developer = developer;
         this.publisher = publisher;
@@ -39,19 +41,29 @@ public class GameOverView
         this.videoList = videoList;
     }
 
-    public GameOverView(String href, String appid, String tagids, int search_page, String image2x, String name, String releaseDate, String finalPriceString, long finalPrice, int discount, ArrayList<String> platforms, String originalPriceString) {
-        this.href = href;
-        this.appid = appid;
-        this.tagids = tagids;
+    public GameOverView(String href, String appid, String s, int search_page, String image2x, String name, String releaseDate, String finalPriceString, long finalPrice, int discountPercentage, ArrayList<String> platforms, String originalPriceString) {
+        super(appid,name,finalPriceString,image2x);
+        this.tagids = s;
         this.search_page = search_page;
-        this.image2x = image2x;
-        this.name = name;
+        this.href = href;
         this.releaseDate = releaseDate;
-        this.finalPriceString = finalPriceString;
-        this.finalPrice = finalPrice;
-        this.discount = discount;
+        this.finalPrice= finalPrice;
+        this.discount = discountPercentage;
         this.platforms = platforms;
         this.originalPriceString = originalPriceString;
+    }
+
+    public GameOverView(String href, String s, String name, String releaseDate, String finalPriceString, int discount, String originalPriceString, String developer, String publisher, String description, ArrayList<String> videoList) {
+        super("",name,finalPriceString,"");
+        this.tagids = s;
+        this.href = href;
+        this.releaseDate = releaseDate;
+        this.originalPriceString = originalPriceString;
+        this.discount = discount;
+        this.developer = developer;
+        this.publisher = publisher;
+        this.description = description;
+        this.videoList = videoList;
     }
 
     public String getHref() {
@@ -60,14 +72,6 @@ public class GameOverView
 
     public void setHref(String href) {
         this.href = href;
-    }
-
-    public String getAppid() {
-        return appid;
-    }
-
-    public void setAppid(String appid) {
-        this.appid = appid;
     }
 
     public String getTagids() {
@@ -86,36 +90,12 @@ public class GameOverView
         this.search_page = search_page;
     }
 
-    public String getImage2x() {
-        return image2x;
-    }
-
-    public void setImage2x(String image2x) {
-        this.image2x = image2x;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getReleaseDate() {
         return releaseDate;
     }
 
     public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
-    }
-
-    public String getFinalPriceString() {
-        return finalPriceString;
-    }
-
-    public void setFinalPriceString(String finalPriceString) {
-        this.finalPriceString = finalPriceString;
     }
 
     public long getFinalPrice() {
@@ -149,7 +129,6 @@ public class GameOverView
     public void setOriginalPriceString(String originalPriceString) {
         this.originalPriceString = originalPriceString;
     }
-
 
     public String getDeveloper() {
         return developer;
